@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Volleyball Hobby: Your ultimate platform to learn, improve, and connect with volleyball players. Explore fitness drills, game strategy, and local tournaments.">
+    <title>Volleyball Hobby - Train, Play, Connect</title>
+    
+    <!-- Favicon Placeholder -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏐</text></svg>">
+
+    <!-- Google Fonts: Poppins (headings) & Open Sans (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* ===== CSS Reset & Base Styles ===== */
+        :root {
+            /* Color Palette: Light Theme */
+            --bg-light: #ffffff;
+            --text-light: #111827; /* slate-900 */
+            --card-light: #f9fafb; /* slate-50 */
+            --border-light: #e5e7eb; /* slate-200 */
+            --accent-light: #0ea5e9; /* sky-500 */
+            --heading-light: #0369a1; /* sky-700 */
+            --subtle-light: #6b7280; /* slate-500 */
+
+            /* Color Palette: Dark Theme */
+            --bg-dark: #0f172a; /* slate-900 */
+            --text-dark: #cbd5e1; /* slate-300 */
+            --card-dark: #1e293b; /* slate-800 */
+            --border-dark: #334155; /* slate-700 */
+            --accent-dark: #38bdf8; /* sky-400 */
+            --heading-dark: #7dd3fc; /* sky-300 */
+            --subtle-dark: #94a3b8; /* slate-400 */
+
+            /* Typography */
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+
+            /* Fluid Typography & Spacing */
+            --fs-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+            --fs-h1: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
+            --fs-h2: clamp(2rem, 1.25rem + 3vw, 3.5rem);
+            --fs-h3: clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem);
+            --section-padding: clamp(4rem, 2rem + 8vw, 8rem);
+        }
+
+        /* Set color variables based on theme */
+        [data-theme="light"] {
+            --color-bg: var(--bg-light);
+            --color-text: var(--text-light);
+            --color-card: var(--card-light);
+            --color-border: var(--border-light);
+            --color-accent: var(--accent-light);
+            --color-heading: var(--heading-light);
+            --color-subtle: var(--subtle-light);
+        }
+
+        [data-theme="dark"] {
+            --color-bg: var(--bg-dark);
+            --color-text: var(--text-dark);
+            --color-card: var(--card-dark);
+            --color-border: var(--border-dark);
+            --color-accent: var(--accent-dark);
+            --color-heading: var(--heading-dark);
+            --color-subtle: var(--subtle-dark);
+        }
+        
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            font-size: var(--fs-base);
+            line-height: 1.6;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        img { max-width: 100%; display: block; }
+        h1, h2, h3 { font-family: var(--font-heading); color: var(--color-heading); line-height: 1.2; }
+        h1 { font-size: var(--fs-h1); }
+        h2 { font-size: var(--fs-h2); }
+        h3 { font-size: var(--fs-h3); }
+        a { color: var(--color-accent); text-decoration: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+        /* Accessibility: Skip to Content Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--color-accent);
+            color: var(--color-bg);
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        .skip-link:focus { top: 0; }
+
+        /* Reduced Motion Query */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* ===== Header & Navigation ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 0;
+            z-index: 10;
+            transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out;
+        }
+        .header.scrolled {
+            background-color: var(--color-card);
+            padding: 0.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--color-heading); }
+        .nav-links { display: none; list-style: none; gap: 1rem; } /* Reduced gap for more items */
+        .nav-links a { font-weight: 600; color: var(--color-text); transition: color 0.2s; padding: 0.5rem; }
+        .nav-links a:hover, .nav-links a:focus { color: var(--color-accent); }
+        
+        .theme-toggle { background: none; border: none; color: var(--color-text); font-size: 1.2rem; cursor: pointer; margin-left:1.5rem; }
+        
+        .nav-toggle { display: block; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-text); z-index: 1000; }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--color-card);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            list-style: none;
+            gap: 1.5rem; /* Reduced gap */
+            z-index: 999;
+        }
+        .mobile-nav.open { right: 0; }
+        .mobile-nav a { font-size: 1.5rem; font-weight: 600; color: var(--color-text); }
+        body.nav-open { overflow: hidden; }
+
+        /* Desktop Navigation */
+        @media (min-width: 992px) {
+            .nav-links { display: flex; }
+            .nav-toggle { display: none; }
+        }
+
+        /* ===== Hero Section ===== */
+        #home {
+            padding-top: var(--section-padding);
+            padding-bottom: var(--section-padding);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .hero-text { text-align: center; }
+        .hero-text h1 { margin-bottom: 1rem; }
+        .hero-text p { font-size: 1.2rem; color: var(--color-subtle); margin-bottom: 2rem; max-width: 600px; margin-inline: auto; }
+        .hero-cta { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 2px solid transparent;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .btn-primary { background-color: var(--color-accent); color: var(--bg-light); }
+        .btn-secondary { background-color: transparent; color: var(--color-accent); border-color: var(--color-accent); }
+        
+        .hero-image-wrapper { position: relative; border-radius: 1rem; overflow: hidden; }
+        .hero-image-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.7), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        [data-theme="dark"] .hero-image-wrapper::after { opacity: 1; }
+        .hero-image { width: 100%; height: auto; object-fit: cover; }
+        
+        .quick-info { margin-top: 4rem; text-align: left; }
+        .quick-info ul { list-style: none; padding-left: 1.5rem; }
+        .quick-info li { position: relative; margin-bottom: 0.5rem; }
+        .quick-info li::before {
+            content: '\f44d'; /* Font Awesome check icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--color-accent);
+            position: absolute;
+            left: -1.5rem;
+        }
+        .history-section { margin-top: 3rem; }
+        .history-section h3 { margin-bottom: 1rem; color: var(--color-subtle); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;}
+        .history-section p { color: var(--color-subtle); margin-bottom: 0.5rem; }
+        
+        @media (min-width: 992px) {
+            .hero-content { grid-template-columns: 1fr 1fr; }
+            .hero-text { text-align: left; }
+            .hero-cta { justify-content: flex-start; }
+            .hero-text p { margin-inline: 0; }
+        }
+
+        /* ===== General Section Styling ===== */
+        section { padding: var(--section-padding) 0; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { margin-bottom: 0.5rem; }
+        .section-header p { color: var(--color-subtle); max-width: 700px; margin: 0 auto; }
+
+        /* ===== Fitness Section ===== */
+        .fitness-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        .fitness-card {
+            background-color: var(--color-card);
+            border: 1px solid var(--color-border);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+        }
+        .fitness-card .number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            line-height: 1;
+        }
+        .fitness-card h3 { margin: 0.5rem 0 1rem; }
+        .fitness-card .tip { font-style: italic; color: var(--color-subtle); }
+        
+        .unconventional-ideas { margin-top: 4rem; }
+        .unconventional-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        .idea-item {
+            background-color: var(--color-card);
+            padding: 1.5rem;
+            border-left: 4px solid var(--color-accent);
+            border-radius: 0.5rem;
+        }
+        @media (min-width: 768px) {
+            .fitness-grid { grid-template-columns: repeat(3, 1fr); }
+            .unconventional-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* ===== Strategy Section ===== */
+        .strategy-columns {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        .strategy-block {
+            background-color: var(--color-card);
+            border: 1px solid var(--color-border);
+            padding: 2rem;
+            border-radius: 1rem;
+        }
+        .strategy-block h3 { border-bottom: 2px solid var(--color-border); padding-bottom: 0.5rem; margin-bottom: 1rem; }
+        .strategy-block ul { list-style: none; }
+        .strategy-block li { margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative; }
+        .strategy-block li::before {
+            content: '\f058'; /* Font Awesome check-circle */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--color-accent);
+            position: absolute;
+            left: 0;
+            top: 4px;
+        }
+        .reading-list { margin-top: 4rem; }
+        .reading-list ul { list-style: none; }
+        .reading-list li { margin-bottom: 1rem; }
+        .reading-list a { display: block; font-weight: 600; }
+        .reading-list span { color: var(--color-subtle); font-size: 0.9rem; }
+        @media (min-width: 992px) {
+            .strategy-columns { grid-template-columns: repeat(3, 1fr); }
+        }
+        
+        /* ===== Tournaments Section ===== */
+        .tournaments-grid { display: grid; gap: 2rem; grid-template-columns: 1fr; }
+        .organizer-list, .history-timeline { background-color: var(--color-card); border: 1px solid var(--color-border); border-radius: 1rem; padding: 2rem; }
+        .organizer-item { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--color-border); }
+        .organizer-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0;}
+        .organizer-item h4 { color: var(--color-heading); }
+        .organizer-item a { word-break: break-all; }
+
+        .history-timeline h3 { margin-bottom: 2rem; }
+        .timeline-item { position: relative; padding-left: 2rem; padding-bottom: 2rem; }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 5px;
+            width: 2px;
+            height: 100%;
+            background-color: var(--color-border);
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background-color: var(--color-accent);
+            border: 2px solid var(--color-bg);
+        }
+        .timeline-date { font-weight: 600; color: var(--color-subtle); font-size: 0.9rem; }
+        .timeline-title { font-weight: 700; color: var(--color-heading); margin: 0.25rem 0; }
+        @media (min-width: 992px) {
+            .tournaments-grid { grid-template-columns: 2fr 1fr; }
+        }
+
+        /* ===== Contact Section ===== */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .contact-form .form-group { margin-bottom: 1.5rem; }
+        .contact-form label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--color-border);
+            background-color: var(--color-card);
+            color: var(--color-text);
+            font-family: var(--font-body);
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: 2px solid var(--color-accent);
+            border-color: transparent;
+        }
+        .privacy-note { font-size: 0.8rem; color: var(--color-subtle); margin-top: 1rem; }
+        
+        .social-links { text-align: center; }
+        .social-links h3 { margin-bottom: 1rem; }
+        .social-icons { display: flex; justify-content: center; gap: 1.5rem; list-style: none; }
+        .social-icons a { font-size: 2rem; color: var(--color-subtle); transition: color 0.2s, transform 0.2s; }
+        .social-icons a:hover { color: var(--color-accent); transform: scale(1.1); }
+        @media (min-width: 768px) {
+            .contact-wrapper { grid-template-columns: 2fr 1fr; }
+            .social-links { text-align: left; }
+            .social-icons { justify-content: flex-start; }
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            padding: 2rem 0;
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+            color: var(--color-subtle);
+        }
+
+        /* ===== Back to Top Button ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--color-accent);
+            color: var(--color-bg);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            z-index: 5;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* ===== Scroll-Trigger Animations ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ===== Header ===== -->
+    <header class="header" id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Volleyball Hobby</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#fitness">Fitness</a></li>
+                    <li><a href="#strategy">Strategy</a></li>
+                    <li><a href="#tournaments">Tournaments</a></li>
+                    <li><a href="training.html">Training</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </button>
+                 <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="mobile-nav" id="mobile-nav" role="menu">
+                <li><a href="#home" role="menuitem">Home</a></li>
+                <li><a href="#fitness" role="menuitem">Fitness</a></li>
+                <li><a href="#strategy" role="menuitem">Strategy</a></li>
+                <li><a href="#tournaments" role="menuitem">Tournaments</a></li>
+                <li><a href="training.html" role="menuitem">Training</a></li>
+                <li><a href="about.html" role="menuitem">About</a></li>
+                <li><a href="feedback.html" role="menuitem">Feedback</a></li>
+                <li><a href="#contact" role="menuitem">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- ===== Hero Section ===== -->
+        <section id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text reveal">
+                        <h1>Elevate Your Game, Connect with Your Crew</h1>
+                        <p>The ultimate platform for amateur and advanced players to sharpen skills, boost performance, and find the fun in every match.</p>
+                        <div class="hero-cta">
+                            <a href="#fitness" class="btn btn-primary">Start Training</a>
+                            <a href="#strategy" class="btn btn-secondary">Explore Strategy</a>
+                        </div>
+                        <div class="quick-info">
+                            <div class="history-section">
+                                <h3 class="reveal">A Game of Evolution</h3>
+                                <p class="reveal"><strong>Origins:</strong> Invented in 1895 as "Mintonette," a less strenuous alternative to basketball.</p>
+                                <p class="reveal"><strong>Rise of Indoor & Beach:</strong> The 20th century saw the game formalize, with the iconic three-hit rule established in 1922 and beach volleyball emerging as a global phenomenon.</p>
+                                <p class="reveal"><strong>Modern Game:</strong> Today, it's a sport of power and precision, with rally scoring and the specialist Libero position making it faster and more exciting than ever.</p>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="hero-image-wrapper reveal">
+                        <!-- Royalty-free image from Unsplash. No attribution required. -->
+                        <img src="https://images.unsplash.com/photo-1542692554-14313a21643c?q=80&w=2070&auto=format&fit=crop" alt="A professional volleyball player spiking the ball over the net during an intense match." class="hero-image" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Fitness Section ===== -->
+        <section id="fitness">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Engineered for Performance</h2>
+                    <p>Volleyball demands explosive power, cat-like agility, and smart positioning. Our focused training approach builds the complete athlete.</p>
+                </div>
+                <div class="fitness-grid">
+                    <div class="fitness-card reveal">
+                        <div class="number">01</div>
+                        <h3>Strength & Power</h3>
+                        <p>Build the foundational strength for higher jumps, harder hits, and solid blocks.</p>
+                        <p class="tip"><strong>Try this today:</strong> Incorporate plyometric box jumps to increase your vertical explosiveness.</p>
+                    </div>
+                    <div class="fitness-card reveal">
+                        <div class="number">02</div>
+                        <h3>Agility & Speed</h3>
+                        <p>Improve your reaction time and court coverage with drills that sharpen your footwork.</p>
+                        <p class="tip"><strong>Try this today:</strong> Use an agility ladder for lateral scissor steps to enhance side-to-side quickness.</p>
+                    </div>
+                    <div class="fitness-card reveal">
+                        <div class="number">03</div>
+                        <h3>Positioning & Control</h3>
+                        <p>Master the art of being in the right place at the right time for perfect passes and digs.</p>
+                        <p class="tip"><strong>Try this today:</strong> Practice shuffle-to-base defensive drills to make efficient movements second nature.</p>
+                    </div>
+                </div>
+                <div class="unconventional-ideas reveal">
+                    <h3 style="text-align: center; margin-bottom: 2rem;">Unconventional ways to improve & have fun</h3>
+                    <div class="unconventional-grid">
+                        <div class="idea-item">Use reaction balls to sharpen reflexes and hand-eye coordination for unexpected digs.</div>
+                        <div class="idea-item">Set up parkour-style footwork drills in a park using benches and lines to simulate court obstacles.</div>
+                        <div class="idea-item">Practice dance-based rhythm exercises to improve timing for approach jumps and blocking.</div>
+                        <div class="idea-item">Play mini-games with friends, like "accuracy tennis" over the net, to gamify passing and setting precision.</div>
+                         <div class="idea-item">Try yoga or pilates to build core strength and flexibility, reducing injury risk from dives and jumps.</div>
+                        <div class="idea-item">Play beach volleyball to improve your all-around skills, conditioning, and ability to read the game in variable conditions.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Strategy Section ===== -->
+        <section id="strategy">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>From Fundamentals to Flow State</h2>
+                    <p>Understand the tactical layers of volleyball. Progress your game IQ from executing basics to anticipating plays like a pro.</p>
+                </div>
+                <div class="strategy-columns">
+                    <div class="strategy-block reveal">
+                        <h3>Basic</h3>
+                        <ul>
+                            <li>Mastering serve consistency and placement</li>
+                            <li>Understanding court zones and responsibilities</li>
+                            <li>Effective and constant communication ("Mine!", "Help!")</li>
+                            <li>Developing a reliable forearm pass to target</li>
+                        </ul>
+                    </div>
+                    <div class="strategy-block reveal">
+                        <h3>Advanced</h3>
+                        <ul>
+                            <li>Implementing serve-receive patterns (e.g., W formation)</li>
+                            <li>Running basic offensive systems like the 5-1 or 6-2</li>
+                            <li>Reading hitter approaches to inform block timing</li>
+                            <li>Transitioning smoothly from defense to offense</li>
+                        </ul>
+                    </div>
+                    <div class="strategy-block reveal">
+                        <h3>Pro</h3>
+                        <ul>
+                            <li>Scouting opponent tendencies and exploiting weaknesses</li>
+                            <li>Executing tempo offenses (quicks, shoots)</li>
+                            <li>Making situational plays under pressure</li>
+                            <li>Advanced blocking schemes and defensive shifts</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="reading-list reveal">
+                    <h3 style="margin-bottom: 1rem;">Further Reading & Reliable References</h3>
+                     <ul>
+                        <li><a href="https://usavolleyball.org/story/strength-and-conditioning-in-volleyball/" target="_blank">USA Volleyball Strength & Conditioning</a><span>- Official guidance on building a volleyball-specific fitness base.</span></li>
+                        <li><a href="https://www.fivb.com/en/development/education/coaching" target="_blank">FIVB Coaching Resources</a><span>- The international governing body's hub for technical and tactical development.</span></li>
+                        <li><a href="https://jvavolleyball.org/plyometrics-vertical-training-volleyball-athletes/" target="_blank">JVA Plyometrics for Vertical Training</a><span>- A deep dive into jump training science for volleyball athletes.</span></li>
+                        <li><a href="https://www.nsca.com/education/articles/kinetic-select/volleyball-jump-height/" target="_blank">NSCA: Science of Volleyball Jump Height</a><span>- Research-backed insights into improving vertical performance from the National Strength and Conditioning Association.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Tournaments Section ===== -->
+        <section id="tournaments">
+            <div class="container">
+                 <div class="section-header reveal">
+                    <h2>Compete and Connect</h2>
+                    <p>Find local tournaments, join the community, and put your skills to the test. Here’s how to get started in Your City.</p>
+                </div>
+                <div class="tournaments-grid">
+                    <div class="organizer-list reveal">
+                        <h3>Local Links & Contacts (Columbus, OH Examples)</h3>
+                        <p style="color:var(--color-subtle); margin-bottom:2rem;">Note: Swap these links for your local area. Columbus is a major volleyball hub and a great example!</p>
+                        <div class="organizer-item">
+                            <h4>Woodlands Backyard</h4>
+                            <p>Offers year-round sand leagues and weekend tournaments for all skill levels. A great social and competitive scene.</p>
+                            <a href="https://www.woodlandsbackyard.com/" target="_blank">woodlandsbackyard.com</a> | <a href="mailto:play@volleyballhobby.example">play@volleyballhobby.example</a>
+                        </div>
+                         <div class="organizer-item">
+                            <h4>The VolleyPark</h4>
+                            <p>Dedicated beach volleyball facility known for its high-energy leagues and tournaments, fostering a strong community.</p>
+                             <a href="https://thevolleypark.com/" target="_blank">thevolleypark.com</a> | <a href="mailto:contact@volleyballhobby.example">contact@volleyballhobby.example</a>
+                        </div>
+                        <div class="organizer-item">
+                            <h4>Ohio Valley Region (OVR - USA Volleyball)</h4>
+                            <p>The official regional body for USA Volleyball, hosting sanctioned indoor and outdoor events for adults and juniors.</p>
+                            <a href="https://ovr.org/events/" target="_blank">ovr.org/events</a> | <a href="mailto:info@volleyballhobby.example">info@volleyballhobby.example</a>
+                        </div>
+                    </div>
+                    <div id="recent-history" class="history-timeline reveal">
+                        <h3>Recent Tournament History</h3>
+                        <div class="timeline-item">
+                            <div class="timeline-date">AUG 2025</div>
+                            <div class="timeline-title">Summer Sand Slam</div>
+                            <p>Columbus, OH - Placed 3rd in Co-ed A Division.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">JUN 2025</div>
+                            <div class="timeline-title">Grass Court Challenge</div>
+                            <p>Cincinnati, OH - Fun weekend, made it to quarterfinals.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">MAY 2025</div>
+                            <div class="timeline-title">Spring Fling Indoors</div>
+                             <p>Cleveland, OH - First tournament with the new team.</p>
+                        </div>
+                         <div class="timeline-item">
+                            <div class="timeline-date">FEB 2025</div>
+                            <div class="timeline-title">Winter Classic 4v4</div>
+                             <p>Indianapolis, IN - Competitive bracket, great experience.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Contact Section ===== -->
+        <section id="contact">
+            <div class="container">
+                <div class="contact-wrapper">
+                    <div class="contact-form-wrapper reveal">
+                        <h2>Get In Touch</h2>
+                        <p style="color: var(--color-subtle); margin-bottom: 2rem;">Have a question, suggestion, or want to partner with us? Drop a line.</p>
+                        <form class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                            <p class="privacy-note">We respect your privacy. Your information will not be shared.</p>
+                        </form>
+                    </div>
+                    <div class="social-links reveal">
+                        <h3>Follow Our Journey</h3>
+                        <ul class="social-icons">
+                            <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                            <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Volleyball Hobby. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ===== Back to Top Button ===== -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // ===== Theme Toggler =====
+            const themeToggle = document.getElementById('theme-toggle');
+            const htmlEl = document.documentElement;
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            htmlEl.setAttribute('data-theme', currentTheme);
+
+            themeToggle.addEventListener('click', () => {
+                const newTheme = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                htmlEl.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+
+            // ===== Sticky Header =====
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // ===== Mobile Navigation =====
+            const navToggle = document.getElementById('nav-toggle');
+            const mobileNav = document.getElementById('mobile-nav');
+            const navLinks = mobileNav.querySelectorAll('a');
+
+            const toggleNav = () => {
+                const isOpen = mobileNav.classList.toggle('open');
+                navToggle.setAttribute('aria-expanded', isOpen);
+                document.body.classList.toggle('nav-open');
+                
+                if (isOpen) {
+                    navToggle.innerHTML = '<i class="fas fa-times"></i>';
+                    navLinks[0].focus();
+                } else {
+                    navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            };
+            
+            navToggle.addEventListener('click', toggleNav);
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Close nav only for on-page anchor links
+                    if (link.getAttribute('href').startsWith('#')) {
+                        if (mobileNav.classList.contains('open')) {
+                           toggleNav();
+                        }
+                    }
+                });
+            });
+
+            // Trap focus within mobile nav
+            document.addEventListener('keydown', (e) => {
+                if (mobileNav.classList.contains('open') && e.key === 'Tab') {
+                    const focusableElements = [navToggle, ...Array.from(navLinks)];
+                    const firstElement = focusableElements[0];
+                    const lastElement = focusableElements[focusableElements.length - 1];
+
+                    if (e.shiftKey) { // Shift + Tab
+                        if (document.activeElement === firstElement) {
+                            lastElement.focus();
+                            e.preventDefault();
+                        }
+                    } else { // Tab
+                        if (document.activeElement === lastElement) {
+                            firstElement.focus();
+                            e.preventDefault();
+                        }
+                    }
+                }
+            });
+
+
+            // ===== Scroll-Triggered Animations =====
+            const revealElements = document.querySelectorAll('.reveal');
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !prefersReducedMotion) {
+                        entry.target.classList.add('reveal-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            revealElements.forEach(el => {
+                if (prefersReducedMotion) {
+                    el.classList.add('reveal-in');
+                } else {
+                   revealObserver.observe(el);
+                }
+            });
+
+            // ===== Back to Top Button =====
+            const backToTopButton = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 600) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ===== Simple Contact Form Validation (Placeholder) =====
+            const contactForm = document.querySelector('.contact-form');
+            if(contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    // In a real app, you would handle form submission here (e.g., via AJAX)
+                    alert('Thank you for your message!');
+                    contactForm.reset();
+                });
+            }
+
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about the mission and philosophy of Volleyball Hobby. We're dedicated to helping players improve, connect, and enjoy the game.">
+    <title>About Us - Volleyball Hobby</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏐</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* All CSS from index.html is copied here for consistency */
+        :root {
+            --bg-light: #ffffff; --text-light: #111827; --card-light: #f9fafb; --border-light: #e5e7eb; --accent-light: #0ea5e9; --heading-light: #0369a1; --subtle-light: #6b7280;
+            --bg-dark: #0f172a; --text-dark: #cbd5e1; --card-dark: #1e293b; --border-dark: #334155; --accent-dark: #38bdf8; --heading-dark: #7dd3fc; --subtle-dark: #94a3b8;
+            --font-heading: 'Poppins', sans-serif; --font-body: 'Open Sans', sans-serif;
+            --fs-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); --fs-h1: clamp(2.5rem, 1.5rem + 4vw, 4.5rem); --fs-h2: clamp(2rem, 1.25rem + 3vw, 3.5rem); --fs-h3: clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem); --section-padding: clamp(4rem, 2rem + 8vw, 8rem);
+        }
+        [data-theme="light"] { --color-bg: var(--bg-light); --color-text: var(--text-light); --color-card: var(--card-light); --color-border: var(--border-light); --color-accent: var(--accent-light); --color-heading: var(--heading-light); --color-subtle: var(--subtle-light); }
+        [data-theme="dark"] { --color-bg: var(--bg-dark); --color-text: var(--text-dark); --color-card: var(--card-dark); --color-border: var(--border-dark); --color-accent: var(--accent-dark); --color-heading: var(--heading-dark); --color-subtle: var(--subtle-dark); }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); font-size: var(--fs-base); line-height: 1.6; background-color: var(--color-bg); color: var(--color-text); transition: background-color 0.3s, color 0.3s; }
+        img { max-width: 100%; display: block; border-radius: .5rem;}
+        h1, h2, h3 { font-family: var(--font-heading); color: var(--color-heading); line-height: 1.2; }
+        h1 { font-size: var(--fs-h1); } h2 { font-size: var(--fs-h2); } h3 { font-size: var(--fs-h3); }
+        a { color: var(--color-accent); text-decoration: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        .skip-link { position: absolute; top: -40px; left: 0; background: var(--color-accent); color: var(--color-bg); padding: 8px; z-index: 100; transition: top 0.3s; }
+        .skip-link:focus { top: 0; }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+        .header { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 0; z-index: 10; transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out; }
+        .header.scrolled { background-color: var(--color-card); padding: 0.5rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--color-heading); }
+        .nav-links { display: none; list-style: none; gap: 1.5rem; }
+        .nav-links a { font-weight: 600; color: var(--color-text); transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a:focus { color: var(--color-accent); }
+        .theme-toggle { background: none; border: none; color: var(--color-text); font-size: 1.2rem; cursor: pointer; margin-left:1.5rem; }
+        .nav-toggle { display: block; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-text); z-index: 1000; }
+        .mobile-nav { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background-color: var(--color-card); display: flex; flex-direction: column; justify-content: center; align-items: center; transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); list-style: none; gap: 2rem; z-index: 999; }
+        .mobile-nav.open { right: 0; }
+        .mobile-nav a { font-size: 1.5rem; font-weight: 600; color: var(--color-text); }
+        body.nav-open { overflow: hidden; }
+        @media (min-width: 768px) { .nav-links { display: flex; } .nav-toggle { display: none; } }
+        .page-header { padding-top: calc(var(--section-padding) / 2 + 70px); padding-bottom: calc(var(--section-padding) / 2); text-align: center; background-color: var(--color-card); }
+        .footer { padding: 2rem 0; border-top: 1px solid var(--color-border); text-align: center; color: var(--color-subtle); margin-top: auto;}
+        .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 3rem; height: 3rem; background-color: var(--color-accent); color: var(--color-bg); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; border: none; cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(20px); transition: opacity 0.3s, visibility 0.3s, transform 0.3s; z-index: 5; }
+        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .reveal-in { opacity: 1; transform: translateY(0); }
+        body { display: flex; flex-direction: column; min-height: 100vh; }
+        main { flex-grow: 1; }
+        .about-content { max-width: 800px; margin: var(--section-padding) auto; }
+        .about-content h2 { margin-bottom: 1.5rem; }
+        .about-content p { margin-bottom: 1.5rem; }
+        .team-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; text-align: center;}
+        .team-member img { border-radius: 50%; width: 150px; height: 150px; object-fit: cover; margin: 0 auto 1rem; }
+        .team-member h3 { font-size: 1.5rem;}
+        .team-member p { color: var(--color-subtle); }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="header" id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Volleyball Hobby</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="training.html">Training</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav"><i class="fas fa-bars"></i></button>
+            </div>
+            <ul class="mobile-nav" id="mobile-nav" role="menu">
+                 <li><a href="index.html" role="menuitem">Home</a></li>
+                <li><a href="training.html" role="menuitem">Training</a></li>
+                <li><a href="about.html" role="menuitem">About</a></li>
+                <li><a href="feedback.html" role="menuitem">Feedback</a></li>
+                <li><a href="index.html#contact" role="menuitem">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <h1 class="reveal">About Volleyball Hobby</h1>
+                <p class="reveal">The story, mission, and passion behind our platform.</p>
+            </div>
+        </section>
+
+        <div class="container about-content">
+            <section id="mission" class="reveal">
+                <h2>Our Mission</h2>
+                <p>Volleyball Hobby was born from a simple idea: the love of the game should be matched by the quality of the resources available to players. We aim to bridge the gap between casual pickup games and the complex world of professional training. Our mission is to provide accessible, high-quality, and engaging content that empowers every player to improve their skills, understand strategy more deeply, and connect with a vibrant community of fellow enthusiasts.</p>
+                <p>We believe that improvement and fun are not mutually exclusive. By combining data-driven training techniques with a focus on community and sportsmanship, we're building more than just a resource—we're building a home for volleyball lovers.</p>
+            </section>
+            
+            <section id="philosophy" class="reveal">
+                <h2>Our Philosophy</h2>
+                <p><strong>Learn, Play, Connect.</strong> These three pillars guide everything we do. We provide the tools to <strong>learn</strong> the game inside and out. We inspire you to get out and <strong>play</strong> with more confidence and skill. And we foster a platform where you can <strong>connect</strong> with friends, find teammates, and join local events. We leverage modern design and technology to make learning intuitive and fun, ensuring that every visit to Volleyball Hobby leaves you more motivated than the last.</p>
+            </section>
+            
+            <section id="team" class="reveal">
+                <h2>Meet the Founder</h2>
+                <div class="team-section">
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop" alt="Photo of Alex Doe, founder of Volleyball Hobby.">
+                        <h3>Alex Doe</h3>
+                        <p>Founder & Head Coach</p>
+                    </div>
+                    <div style="text-align: left; align-self: center;">
+                       <p>A lifelong volleyball player and certified coach, Alex founded Volleyball Hobby after seeing a need for a centralized, modern resource for adult recreational players. With a background in sports science and a passion for teaching, Alex is dedicated to making high-level volleyball knowledge accessible to everyone.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Volleyball Hobby. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // All JS from index.html is copied here for consistency
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const htmlEl = document.documentElement;
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            htmlEl.setAttribute('data-theme', currentTheme);
+            themeToggle.addEventListener('click', () => {
+                const newTheme = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                htmlEl.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            });
+            
+            const navToggle = document.getElementById('nav-toggle');
+            const mobileNav = document.getElementById('mobile-nav');
+            const navLinks = mobileNav.querySelectorAll('a');
+            const toggleNav = () => {
+                const isOpen = mobileNav.classList.toggle('open');
+                navToggle.setAttribute('aria-expanded', isOpen);
+                document.body.classList.toggle('nav-open');
+                navToggle.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+                if (isOpen) navLinks[0].focus();
+            };
+            navToggle.addEventListener('click', toggleNav);
+
+            document.addEventListener('keydown', (e) => {
+                if (mobileNav.classList.contains('open') && e.key === 'Tab') {
+                    const focusableElements = [navToggle, ...Array.from(navLinks)];
+                    const firstElement = focusableElements[0];
+                    const lastElement = focusableElements[focusableElements.length - 1];
+                    if (e.shiftKey) { if (document.activeElement === firstElement) { lastElement.focus(); e.preventDefault(); } }
+                    else { if (document.activeElement === lastElement) { firstElement.focus(); e.preventDefault(); } }
+                }
+            });
+
+            const revealElements = document.querySelectorAll('.reveal');
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !prefersReducedMotion) {
+                        entry.target.classList.add('reveal-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => {
+                if (prefersReducedMotion) el.classList.add('reveal-in');
+                else revealObserver.observe(el);
+            });
+
+            const backToTopButton = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                backToTopButton.classList.toggle('visible', window.scrollY > 600);
+            });
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>

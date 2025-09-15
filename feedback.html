@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Give us your feedback on Volleyball Hobby. We value your input to help us improve the platform for everyone.">
+    <title>Feedback - Volleyball Hobby</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏐</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* All CSS from index.html is copied here for consistency */
+        :root {
+            --bg-light: #ffffff; --text-light: #111827; --card-light: #f9fafb; --border-light: #e5e7eb; --accent-light: #0ea5e9; --heading-light: #0369a1; --subtle-light: #6b7280;
+            --bg-dark: #0f172a; --text-dark: #cbd5e1; --card-dark: #1e293b; --border-dark: #334155; --accent-dark: #38bdf8; --heading-dark: #7dd3fc; --subtle-dark: #94a3b8;
+            --font-heading: 'Poppins', sans-serif; --font-body: 'Open Sans', sans-serif;
+            --fs-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); --fs-h1: clamp(2.5rem, 1.5rem + 4vw, 4.5rem); --fs-h2: clamp(2rem, 1.25rem + 3vw, 3.5rem); --fs-h3: clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem); --section-padding: clamp(4rem, 2rem + 8vw, 8rem);
+        }
+        [data-theme="light"] { --color-bg: var(--bg-light); --color-text: var(--text-light); --color-card: var(--card-light); --color-border: var(--border-light); --color-accent: var(--accent-light); --color-heading: var(--heading-light); --color-subtle: var(--subtle-light); }
+        [data-theme="dark"] { --color-bg: var(--bg-dark); --color-text: var(--text-dark); --color-card: var(--card-dark); --color-border: var(--border-dark); --color-accent: var(--accent-dark); --color-heading: var(--heading-dark); --color-subtle: var(--subtle-dark); }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); font-size: var(--fs-base); line-height: 1.6; background-color: var(--color-bg); color: var(--color-text); transition: background-color 0.3s, color 0.3s; }
+        img { max-width: 100%; display: block; }
+        h1, h2, h3 { font-family: var(--font-heading); color: var(--color-heading); line-height: 1.2; }
+        h1 { font-size: var(--fs-h1); } h2 { font-size: var(--fs-h2); } h3 { font-size: var(--fs-h3); }
+        a { color: var(--color-accent); text-decoration: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        .skip-link { position: absolute; top: -40px; left: 0; background: var(--color-accent); color: var(--color-bg); padding: 8px; z-index: 100; transition: top 0.3s; }
+        .skip-link:focus { top: 0; }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+        .header { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 0; z-index: 10; transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out; }
+        .header.scrolled { background-color: var(--color-card); padding: 0.5rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--color-heading); }
+        .nav-links { display: none; list-style: none; gap: 1.5rem; }
+        .nav-links a { font-weight: 600; color: var(--color-text); transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a:focus { color: var(--color-accent); }
+        .theme-toggle { background: none; border: none; color: var(--color-text); font-size: 1.2rem; cursor: pointer; margin-left:1.5rem; }
+        .nav-toggle { display: block; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-text); z-index: 1000; }
+        .mobile-nav { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background-color: var(--color-card); display: flex; flex-direction: column; justify-content: center; align-items: center; transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); list-style: none; gap: 2rem; z-index: 999; }
+        .mobile-nav.open { right: 0; }
+        .mobile-nav a { font-size: 1.5rem; font-weight: 600; color: var(--color-text); }
+        body.nav-open { overflow: hidden; }
+        @media (min-width: 768px) { .nav-links { display: flex; } .nav-toggle { display: none; } }
+        .page-header { padding-top: calc(var(--section-padding) / 2 + 70px); padding-bottom: calc(var(--section-padding) / 2); text-align: center; background-color: var(--color-card); }
+        .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 999px; font-weight: 600; transition: transform 0.2s, box-shadow 0.2s; border: 2px solid transparent; cursor: pointer;}
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .btn-primary { background-color: var(--color-accent); color: var(--bg-light); }
+        .form-container { max-width: 800px; margin: var(--section-padding) auto; padding: 2rem; background-color: var(--color-card); border-radius: 1rem; border: 1px solid var(--color-border); }
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+        input, textarea, select { width: 100%; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--color-border); background-color: var(--color-bg); color: var(--color-text); font-family: var(--font-body); }
+        input:focus, textarea:focus, select:focus { outline: 2px solid var(--color-accent); border-color: transparent; }
+        .star-rating { display: flex; gap: 0.5rem; font-size: 1.5rem; }
+        .star-rating .fa-star { color: var(--color-subtle); cursor: pointer; transition: color 0.2s; }
+        .star-rating .fa-star:hover, .star-rating .fa-star.selected { color: var(--color-accent); }
+        .footer { padding: 2rem 0; border-top: 1px solid var(--color-border); text-align: center; color: var(--color-subtle); margin-top: auto;}
+        .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 3rem; height: 3rem; background-color: var(--color-accent); color: var(--color-bg); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; border: none; cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(20px); transition: opacity 0.3s, visibility 0.3s, transform 0.3s; z-index: 5; }
+        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .reveal-in { opacity: 1; transform: translateY(0); }
+        body { display: flex; flex-direction: column; min-height: 100vh; }
+        main { flex-grow: 1; }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="header" id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Volleyball Hobby</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="training.html">Training</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav"><i class="fas fa-bars"></i></button>
+            </div>
+            <ul class="mobile-nav" id="mobile-nav" role="menu">
+                <li><a href="index.html" role="menuitem">Home</a></li>
+                <li><a href="training.html" role="menuitem">Training</a></li>
+                <li><a href="about.html" role="menuitem">About</a></li>
+                <li><a href="feedback.html" role="menuitem">Feedback</a></li>
+                <li><a href="index.html#contact" role="menuitem">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <h1 class="reveal">Share Your Feedback</h1>
+                <p class="reveal">Your thoughts and ideas help us build a better platform for the entire volleyball community. We'd love to hear from you!</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="form-container reveal">
+                <form id="feedback-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedback-type">Type of Feedback</label>
+                        <select id="feedback-type" name="feedback-type">
+                            <option value="suggestion">Suggestion</option>
+                            <option value="bug-report">Bug Report</option>
+                            <option value="praise">Praise / Testimonial</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>How would you rate our training resources?</label>
+                        <div class="star-rating" id="star-rating">
+                            <i class="fas fa-star" data-value="1"></i>
+                            <i class="fas fa-star" data-value="2"></i>
+                            <i class="fas fa-star" data-value="3"></i>
+                            <i class="fas fa-star" data-value="4"></i>
+                            <i class="fas fa-star" data-value="5"></i>
+                        </div>
+                        <input type="hidden" name="rating" id="rating-value" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" rows="6" required placeholder="Tell us what's on your mind..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Volleyball Hobby. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // All JS from index.html is copied here for consistency
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const htmlEl = document.documentElement;
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            htmlEl.setAttribute('data-theme', currentTheme);
+            themeToggle.addEventListener('click', () => {
+                const newTheme = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                htmlEl.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            });
+            
+            const navToggle = document.getElementById('nav-toggle');
+            const mobileNav = document.getElementById('mobile-nav');
+            const navLinks = mobileNav.querySelectorAll('a');
+            const toggleNav = () => {
+                const isOpen = mobileNav.classList.toggle('open');
+                navToggle.setAttribute('aria-expanded', isOpen);
+                document.body.classList.toggle('nav-open');
+                navToggle.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+                if (isOpen) navLinks[0].focus();
+            };
+            navToggle.addEventListener('click', toggleNav);
+
+            document.addEventListener('keydown', (e) => {
+                if (mobileNav.classList.contains('open') && e.key === 'Tab') {
+                    const focusableElements = [navToggle, ...Array.from(navLinks)];
+                    const firstElement = focusableElements[0];
+                    const lastElement = focusableElements[focusableElements.length - 1];
+                    if (e.shiftKey) { if (document.activeElement === firstElement) { lastElement.focus(); e.preventDefault(); } }
+                    else { if (document.activeElement === lastElement) { firstElement.focus(); e.preventDefault(); } }
+                }
+            });
+
+            const revealElements = document.querySelectorAll('.reveal');
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !prefersReducedMotion) {
+                        entry.target.classList.add('reveal-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => {
+                if (prefersReducedMotion) el.classList.add('reveal-in');
+                else revealObserver.observe(el);
+            });
+
+            const backToTopButton = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                backToTopButton.classList.toggle('visible', window.scrollY > 600);
+            });
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Star rating functionality
+            const stars = document.querySelectorAll('.star-rating .fa-star');
+            const ratingInput = document.getElementById('rating-value');
+            stars.forEach(star => {
+                star.addEventListener('click', () => {
+                    const value = star.getAttribute('data-value');
+                    ratingInput.value = value;
+                    stars.forEach(s => {
+                        s.classList.toggle('selected', s.getAttribute('data-value') <= value);
+                    });
+                });
+            });
+
+            // Feedback form submission
+            const feedbackForm = document.getElementById('feedback-form');
+            feedbackForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your feedback!');
+                feedbackForm.reset();
+                ratingInput.value = '0';
+                stars.forEach(s => s.classList.remove('selected'));
+            });
+        });
+    </script>
+</body>
+</html>
