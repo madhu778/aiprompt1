@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detailed training guides for volleyball players. Improve your fitness, strength, agility, and game strategy with our expert drills and tips.">
+    <title>Training - Volleyball Hobby</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏐</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* All CSS from index.html is copied here for consistency */
+        :root {
+            --bg-light: #ffffff; --text-light: #111827; --card-light: #f9fafb; --border-light: #e5e7eb; --accent-light: #0ea5e9; --heading-light: #0369a1; --subtle-light: #6b7280;
+            --bg-dark: #0f172a; --text-dark: #cbd5e1; --card-dark: #1e293b; --border-dark: #334155; --accent-dark: #38bdf8; --heading-dark: #7dd3fc; --subtle-dark: #94a3b8;
+            --font-heading: 'Poppins', sans-serif; --font-body: 'Open Sans', sans-serif;
+            --fs-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); --fs-h1: clamp(2.5rem, 1.5rem + 4vw, 4.5rem); --fs-h2: clamp(2rem, 1.25rem + 3vw, 3.5rem); --fs-h3: clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem); --section-padding: clamp(4rem, 2rem + 8vw, 8rem);
+        }
+        [data-theme="light"] { --color-bg: var(--bg-light); --color-text: var(--text-light); --color-card: var(--card-light); --color-border: var(--border-light); --color-accent: var(--accent-light); --color-heading: var(--heading-light); --color-subtle: var(--subtle-light); }
+        [data-theme="dark"] { --color-bg: var(--bg-dark); --color-text: var(--text-dark); --color-card: var(--card-dark); --color-border: var(--border-dark); --color-accent: var(--accent-dark); --color-heading: var(--heading-dark); --color-subtle: var(--subtle-dark); }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); font-size: var(--fs-base); line-height: 1.6; background-color: var(--color-bg); color: var(--color-text); transition: background-color 0.3s, color 0.3s; }
+        img, .video-placeholder { max-width: 100%; display: block; border-radius: .5rem;}
+        h1, h2, h3 { font-family: var(--font-heading); color: var(--color-heading); line-height: 1.2; }
+        h1 { font-size: var(--fs-h1); } h2 { font-size: var(--fs-h2); } h3 { font-size: var(--fs-h3); }
+        a { color: var(--color-accent); text-decoration: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        .skip-link { position: absolute; top: -40px; left: 0; background: var(--color-accent); color: var(--color-bg); padding: 8px; z-index: 100; transition: top 0.3s; }
+        .skip-link:focus { top: 0; }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+        .header { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 0; z-index: 10; transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out; }
+        .header.scrolled { background-color: var(--color-card); padding: 0.5rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--color-heading); }
+        .nav-links { display: none; list-style: none; gap: 1.5rem; }
+        .nav-links a { font-weight: 600; color: var(--color-text); transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a:focus { color: var(--color-accent); }
+        .theme-toggle { background: none; border: none; color: var(--color-text); font-size: 1.2rem; cursor: pointer; margin-left:1.5rem; }
+        .nav-toggle { display: block; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-text); z-index: 1000; }
+        .mobile-nav { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background-color: var(--color-card); display: flex; flex-direction: column; justify-content: center; align-items: center; transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); list-style: none; gap: 2rem; z-index: 999; }
+        .mobile-nav.open { right: 0; }
+        .mobile-nav a { font-size: 1.5rem; font-weight: 600; color: var(--color-text); }
+        body.nav-open { overflow: hidden; }
+        @media (min-width: 768px) { .nav-links { display: flex; } .nav-toggle { display: none; } }
+        section { padding: var(--section-padding) 0; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { margin-bottom: 0.5rem; }
+        .section-header p { color: var(--color-subtle); max-width: 700px; margin: 0 auto; }
+        .page-header { padding-top: calc(var(--section-padding) / 2 + 70px); padding-bottom: calc(var(--section-padding) / 2); text-align: center; background-color: var(--color-card); }
+        .fitness-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+        .fitness-card { background-color: var(--color-card); border: 1px solid var(--color-border); padding: 2rem; border-radius: 1rem; text-align: left; }
+        .fitness-card .number { font-size: 3rem; font-weight: 700; color: var(--color-accent); line-height: 1; }
+        .fitness-card h3 { margin: 0.5rem 0 1rem; }
+        .fitness-card .tip { font-style: italic; color: var(--color-subtle); }
+        .unconventional-ideas { margin-top: 4rem; }
+        .unconventional-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        .idea-item { background-color: var(--color-card); padding: 1.5rem; border-left: 4px solid var(--color-accent); border-radius: 0.5rem; }
+        @media (min-width: 768px) { .fitness-grid { grid-template-columns: repeat(3, 1fr); } .unconventional-grid { grid-template-columns: repeat(2, 1fr); } }
+        .strategy-columns { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+        .strategy-block { background-color: var(--color-card); border: 1px solid var(--color-border); padding: 2rem; border-radius: 1rem; }
+        .strategy-block h3 { border-bottom: 2px solid var(--color-border); padding-bottom: 0.5rem; margin-bottom: 1rem; }
+        .strategy-block ul { list-style: none; }
+        .strategy-block li { margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative; }
+        .strategy-block li::before { content: '\f058'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--color-accent); position: absolute; left: 0; top: 4px; }
+        .reading-list { margin-top: 4rem; } .reading-list ul { list-style: none; } .reading-list li { margin-bottom: 1rem; }
+        .reading-list a { display: block; font-weight: 600; } .reading-list span { color: var(--color-subtle); font-size: 0.9rem; }
+        @media (min-width: 992px) { .strategy-columns { grid-template-columns: repeat(3, 1fr); } }
+        .footer { padding: 2rem 0; border-top: 1px solid var(--color-border); text-align: center; color: var(--color-subtle); }
+        .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 3rem; height: 3rem; background-color: var(--color-accent); color: var(--color-bg); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; border: none; cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(20px); transition: opacity 0.3s, visibility 0.3s, transform 0.3s; z-index: 5; }
+        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .reveal-in { opacity: 1; transform: translateY(0); }
+        .drill-section { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; margin-bottom: 3rem;}
+        @media (min-width: 768px) { .drill-section { grid-template-columns: 1fr 1fr; } .drill-section.reverse { grid-template-columns: 1fr 1fr; } .drill-section.reverse > *:first-child { order: 2; } }
+        .video-placeholder { background-color: var(--color-border); display: flex; align-items: center; justify-content: center; min-height: 250px; color: var(--color-subtle); font-size: 2rem;}
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="header" id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Volleyball Hobby</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="training.html">Training</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav"><i class="fas fa-bars"></i></button>
+            </div>
+            <ul class="mobile-nav" id="mobile-nav" role="menu">
+                <li><a href="index.html" role="menuitem">Home</a></li>
+                <li><a href="training.html" role="menuitem">Training</a></li>
+                <li><a href="about.html" role="menuitem">About</a></li>
+                <li><a href="feedback.html" role="menuitem">Feedback</a></li>
+                <li><a href="index.html#contact" role="menuitem">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <h1 class="reveal">Training Hub</h1>
+                <p class="reveal">Your complete resource for volleyball fitness and strategy. Find detailed drills and tactical guides to elevate every aspect of your game.</p>
+            </div>
+        </section>
+
+        <section id="fitness">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Engineered for Performance</h2>
+                    <p>Volleyball demands explosive power, cat-like agility, and smart positioning. These drills are designed to build the complete athlete.</p>
+                </div>
+                
+                <div class="drill-section reveal">
+                    <div class="drill-text">
+                        <h3>Strength & Power Drills</h3>
+                        <p>Generate force for higher jumps and harder hits. A strong foundation prevents injury and improves stamina.</p>
+                        <ul>
+                            <li><strong>Box Jumps:</strong> Explosively jump onto a sturdy box, focusing on soft landings. (3 sets of 8 reps)</li>
+                            <li><strong>Squats:</strong> Build leg power with proper form, keeping your chest up and weight in your heels. (4 sets of 10 reps)</li>
+                            <li><strong>Medicine Ball Slams:</strong> Develop core and upper body power essential for spiking. (3 sets of 12 reps)</li>
+                        </ul>
+                    </div>
+                    <div class="video-placeholder"><i class="fas fa-play-circle"></i></div>
+                </div>
+
+                <div class="drill-section reverse reveal">
+                    <div class="drill-text">
+                        <h3>Agility & Speed Drills</h3>
+                        <p>Enhance your ability to change direction and react instantly. Great footwork is the key to great defense.</p>
+                        <ul>
+                            <li><strong>Agility Ladder - Icky Shuffle:</strong> Move laterally through the ladder to improve coordination and quickness.</li>
+                            <li><strong>T-Drill:</strong> Sprint forward, shuffle left, shuffle right, and backpedal. Simulates court movement patterns.</li>
+                            <li><strong>Court Sprints:</strong> Practice sprinting to different zones on the court to improve coverage speed.</li>
+                        </ul>
+                    </div>
+                    <div class="video-placeholder"><i class="fas fa-play-circle"></i></div>
+                </div>
+
+                <div class="unconventional-ideas reveal">
+                    <h3 style="text-align: center; margin-bottom: 2rem;">Unconventional ways to improve & have fun</h3>
+                    <div class="unconventional-grid">
+                        <div class="idea-item">Use reaction balls to sharpen reflexes and hand-eye coordination for unexpected digs.</div>
+                        <div class="idea-item">Set up parkour-style footwork drills in a park using benches and lines to simulate court obstacles.</div>
+                        <div class="idea-item">Practice dance-based rhythm exercises to improve timing for approach jumps and blocking.</div>
+                        <div class="idea-item">Play mini-games with friends, like "accuracy tennis" over the net, to gamify passing and setting precision.</div>
+                        <div class="idea-item">Try yoga or pilates to build core strength and flexibility, reducing injury risk from dives and jumps.</div>
+                        <div class="idea-item">Play beach volleyball to improve your all-around skills, conditioning, and ability to read the game in variable conditions.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="strategy">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>From Fundamentals to Flow State</h2>
+                    <p>Understand the tactical layers of volleyball. Progress your game IQ from executing basics to anticipating plays like a pro.</p>
+                </div>
+                <div class="strategy-columns">
+                    <div class="strategy-block reveal">
+                        <h3>Basic</h3>
+                        <ul>
+                            <li>Mastering serve consistency and placement</li>
+                            <li>Understanding court zones and responsibilities</li>
+                            <li>Effective and constant communication ("Mine!", "Help!")</li>
+                            <li>Developing a reliable forearm pass to target</li>
+                        </ul>
+                    </div>
+                    <div class="strategy-block reveal">
+                        <h3>Advanced</h3>
+                        <ul>
+                            <li>Implementing serve-receive patterns (e.g., W formation)</li>
+                            <li>Running basic offensive systems like the 5-1 or 6-2</li>
+                            <li>Reading hitter approaches to inform block timing</li>
+                            <li>Transitioning smoothly from defense to offense</li>
+                        </ul>
+                    </div>
+                    <div class="strategy-block reveal">
+                        <h3>Pro</h3>
+                        <ul>
+                            <li>Scouting opponent tendencies and exploiting weaknesses</li>
+                            <li>Executing tempo offenses (quicks, shoots)</li>
+                            <li>Making situational plays under pressure</li>
+                            <li>Advanced blocking schemes and defensive shifts</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="reading-list reveal">
+                    <h3 style="margin-bottom: 1rem;">Further Reading & Reliable References</h3>
+                     <ul>
+                        <li><a href="https://usavolleyball.org/story/strength-and-conditioning-in-volleyball/" target="_blank">USA Volleyball Strength & Conditioning</a><span>- Official guidance on building a volleyball-specific fitness base.</span></li>
+                        <li><a href="https://www.fivb.com/en/development/education/coaching" target="_blank">FIVB Coaching Resources</a><span>- The international governing body's hub for technical and tactical development.</span></li>
+                        <li><a href="https://jvavolleyball.org/plyometrics-vertical-training-volleyball-athletes/" target="_blank">JVA Plyometrics for Vertical Training</a><span>- A deep dive into jump training science for volleyball athletes.</span></li>
+                        <li><a href="https://www.nsca.com/education/articles/kinetic-select/volleyball-jump-height/" target="_blank">NSCA: Science of Volleyball Jump Height</a><span>- Research-backed insights into improving vertical performance from the National Strength and Conditioning Association.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Volleyball Hobby. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const htmlEl = document.documentElement;
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            htmlEl.setAttribute('data-theme', currentTheme);
+            themeToggle.addEventListener('click', () => {
+                const newTheme = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                htmlEl.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            });
+
+            const navToggle = document.getElementById('nav-toggle');
+            const mobileNav = document.getElementById('mobile-nav');
+            const navLinks = mobileNav.querySelectorAll('a');
+            const toggleNav = () => {
+                const isOpen = mobileNav.classList.toggle('open');
+                navToggle.setAttribute('aria-expanded', isOpen);
+                document.body.classList.toggle('nav-open');
+                navToggle.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+                if (isOpen) navLinks[0].focus();
+            };
+            navToggle.addEventListener('click', toggleNav);
+
+            document.addEventListener('keydown', (e) => {
+                if (mobileNav.classList.contains('open') && e.key === 'Tab') {
+                    const focusableElements = [navToggle, ...Array.from(navLinks)];
+                    const firstElement = focusableElements[0];
+                    const lastElement = focusableElements[focusableElements.length - 1];
+                    if (e.shiftKey) { if (document.activeElement === firstElement) { lastElement.focus(); e.preventDefault(); } }
+                    else { if (document.activeElement === lastElement) { firstElement.focus(); e.preventDefault(); } }
+                }
+            });
+
+            const revealElements = document.querySelectorAll('.reveal');
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !prefersReducedMotion) {
+                        entry.target.classList.add('reveal-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => {
+                if (prefersReducedMotion) el.classList.add('reveal-in');
+                else revealObserver.observe(el);
+            });
+
+            const backToTopButton = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                backToTopButton.classList.toggle('visible', window.scrollY > 600);
+            });
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
